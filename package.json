@@ -1,0 +1,34 @@
+{
+  "name": "online-dnd-table",
+  "version": "1.0.0",
+  "description": "nodejs backend project developed for dungeons and dragons",
+  "main": "app.js",
+  "scripts": {
+    "start":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azadyildiz/online-dnd-table.git"
+  },
+  "keywords": [
+    "dungeons",
+    "and",
+    "dragons",
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "AZAD YILDIZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azadyildiz/online-dnd-table/issues"
+  },
+  "homepage": "https://github.com/azadyildiz/online-dnd-table#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
