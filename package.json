@@ -4,7 +4,7 @@
   "description": "nodejs backend project developed for dungeons and dragons",
   "main": "app.js",
   "scripts": {
-    "start":"nodemon app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/azadyildiz/online-dnd-table#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
