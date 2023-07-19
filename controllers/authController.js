@@ -4,11 +4,11 @@ const User = require('../models/User');
 
 const registerUser = async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {username, email, password} = req.body;
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = await User.create({email, password: hashedPassword, adventures: []});
+        const user = await User.create({username, email, password: hashedPassword, adventures: []});
 
         res.status(201).json(user);
     } catch (error) {
@@ -18,18 +18,18 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {username, password} = req.body;
 
-        const user = await User.findOne({email});
+        const user = await User.findOne({username});
 
         if (!user) {
-            return res.status(401).json({message: 'Invalid e-mail or password.'});
+            return res.status(401).json({message: 'Invalid username or password.'});
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
-            return res.status(401).json({message: 'Invalid e-mail or password.'});
+            return res.status(401).json({message: 'Invalid username or password.'});
         }
 
         const token = jwt.sign({userId: user._id}, process.env.JWT_SECRET, {expiresIn: '30d'});
