@@ -6,9 +6,7 @@ const registerUser = async (req, res) => {
     try {
         const {username, email, password} = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const user = await User.create({username, email, password: hashedPassword, adventures: []});
+        const user = await User.create({username, email, password, adventures: []});
 
         res.status(201).json(user);
     } catch (error) {
