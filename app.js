@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const authRoutes = require('./routes/authRoutes');
+const campaignRoutes = require('./routes/campaignRoutes');
+
 const verifyToken = require('./middlewares/verifyToken');
 
 dotenv.config();
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRoutes);
+app.use('/campaigns', verifyToken, campaignRoutes);
 
 
 
