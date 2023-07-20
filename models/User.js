@@ -30,9 +30,9 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 6
     },
-    adventures: [{
+    campaigns: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Adventure'
+        ref: 'Campaign'
     }]
 }, {
     timestamps: true
