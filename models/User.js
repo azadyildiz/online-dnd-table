@@ -31,16 +31,8 @@ const userSchema = new mongoose.Schema({
         minlength: 6
     },
     adventures: [{
-        adventure: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Adventure',
-          required: true
-        },
-        character: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Character',
-          required: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Adventure'
     }]
 }, {
     timestamps: true
