@@ -34,8 +34,20 @@ const campaignSchema = new mongoose.Schema({
         statRule: {
             type: String,
             required: true,
-            default: 'Standart Array',
-            enum: ['Standart Array', 'Point Buy', 'Manual'],
+            default: 'standart array',
+            enum: ['standart array', 'point buy', 'manual']
+        },
+        playerHitDiceRoll: {
+            type: String,
+            required: true,
+            default: 'random',
+            enum: ['min', 'average', 'max', 'random']
+        },
+        npcHitDiceRoll: {
+            type: String,
+            required: true,
+            default: 'static',
+            enum: ['min', 'average', 'max', 'random', 'static']
         },
         bannedClasses: {
             type: [String]
