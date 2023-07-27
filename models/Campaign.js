@@ -41,13 +41,13 @@ const campaignSchema = new mongoose.Schema({
             type: String,
             required: true,
             default: 'random',
-            enum: ['min', 'average', 'max', 'random']
+            enum: ['min', 'max', 'random']
         },
         npcHitDiceRoll: {
             type: String,
             required: true,
             default: 'static',
-            enum: ['min', 'average', 'max', 'random', 'static']
+            enum: ['min', 'max', 'random', 'static']
         },
         bannedClasses: {
             type: [String]
