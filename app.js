@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 
 const authRoutes = require('./routes/authRoutes');
 const campaignRoutes = require('./routes/campaignRoutes');
+const characterRoutes = require('./routes/characterRoutes');
 
 const verifyToken = require('./middlewares/verifyToken');
 
@@ -29,6 +30,7 @@ app.use(methodOverride('_method'));
 
 app.use('/auth', authRoutes);
 app.use('/campaigns', verifyToken, campaignRoutes);
+app.use('/characters', verifyToken, characterRoutes);
 
 
 
