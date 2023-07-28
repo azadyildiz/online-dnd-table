@@ -1,10 +1,17 @@
 const Campaign = require('../models/Campaign');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 const createCampaign = async (req, res) => {
     try {
         const {name, password} = req.body;
-        const dm = req.user.userId;
+        const dmId = req.user.userId;
+
+        const dm = await User.findById(dmId);
+
+        if(!dm){
+            return res.status(401).json({message: 'Invalid token. Cannot found this user.'});
+        }
 
         if(password.length < 6){
             return res.status(422).json({error: 'Password length must be at least 6.'})
@@ -12,7 +19,7 @@ const createCampaign = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const campaign = await Campaign.create({name, password: hashedPassword, dm});
+        const campaign = await Campaign.create({name, password: hashedPassword, dm: dmId});
 
         res.status(201).json({ message: 'Campaign created.',campaign: campaign });
     } catch (error) {
@@ -26,6 +33,12 @@ const joinCampaign = async (req, res) => {
         const userId = req.user.userId;
 
         const campaign = await Campaign.findById(campaignId);
+
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(401).json({message: 'Invalid token. Cannot found this user.'});
+        }
 
         if(!campaign){
             return res.status(404).json({message: 'Cannot found campaign.'});
@@ -78,7 +91,7 @@ const deleteCampaign = async (req, res) => {
 
         await campaign.deleteOne();
 
-        res.status(204).json(campaign);
+        res.status(200).json({ message: 'Campaign deleted successfully.' });
     } catch (error) {
         res.status(500).json({error: error.message});
     }
