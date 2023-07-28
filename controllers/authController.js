@@ -10,9 +10,9 @@ const registerUser = async (req, res) => {
             return res.status(422).json({error: 'Password length must be at least 6.'})
         }
 
-        password = await bcrypt.hash(password, 10);
+        var hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = await User.create({username, email, password});
+        const user = await User.create({username, email, password: hashedPassword});
 
         res.status(201).json(user);
     } catch (error) {
